@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\NewFolder1\" />
-    <Folder Include="wwwroot\NewFolder\" />
+    <Compile Remove="wwwroot\NewFolder1\**" />
+    <Content Remove="wwwroot\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
+    <None Remove="wwwroot\NewFolder1\**" />
   </ItemGroup>
 
 </Project>
