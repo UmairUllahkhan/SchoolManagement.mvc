@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<SchoolManagement.mvc.DataDB.StudentTable>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Add Record</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.DateOfBirth)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(Model => item.StudentName)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => item.DateOfBirth)
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
