@@ -7,8 +7,10 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success"> Create New</a>
 </p>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -31,11 +33,53 @@
                 @Html.DisplayFor(modelItem => item.ShortName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
+                <a class="btn btn-danger deletebtn" asp-action="Delete" asp-route-id="@item.CourseId">Delete Old</a>
+                <button data-id="@item.CourseId" class="btn btn-danger deletebtn" type="button" >Delete</button>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<form asp-action="Delete" id="coursedelete">
+    <input type="hidden" id="courseid" class="CourseId" />
+</form>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+        //$(function(){
+        //    $('.deletebtn').click(function(e){
+        //        Swal.fire({
+        //            title: 'Are you sure?',
+        //            text: "You won't be able to revert this!",
+        //            icon: 'warning',
+        //            showCancelButton: true,
+        //            confirmButtonColor: '#3085d6',
+        //            cancelButtonColor: '#d33',
+        //            confirmButtonText: 'Yes, delete it!'
+        //        }).then((result) => {
+        //            if (result.isConfirmed) {
+        //                Swal.fire(
+        //                    'Deleted!',
+        //                    'Your file has been deleted.',
+        //                    'success'
+        //                );
+        //                var btn = $(this);
+        //                var id = btn.data("id");
+        //                $('#courseid').val(id);
+        //                $('#coursedelete').submit();
+        //            }
+        //        })
+
+        //    })
+
+
+        //})
+    </script>
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagement.mvc.DataDB
 {
@@ -10,8 +11,11 @@ namespace SchoolManagement.mvc.DataDB
             CourseOfferedTables = new HashSet<CourseOfferedTable>();
         }
 
+        
         public int CourseId { get; set; }
+        [Display(Name ="Course Name")]
         public string CourseName { get; set; } = null!;
+        [Display(Name = "Course Code")]
         public string? ShortName { get; set; }
 
         public virtual ICollection<CourseOfferedTable> CourseOfferedTables { get; set; }

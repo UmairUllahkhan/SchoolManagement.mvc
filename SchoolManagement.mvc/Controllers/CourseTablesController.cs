@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagement.mvc.DataDB;
 
@@ -150,7 +151,9 @@ namespace SchoolManagement.mvc.Controllers
             }
             
             await _context.SaveChangesAsync();
+            ViewData["Message"] = "Delete ";
             return RedirectToAction(nameof(Index));
+            
         }
 
         private bool CourseTableExists(int id)
