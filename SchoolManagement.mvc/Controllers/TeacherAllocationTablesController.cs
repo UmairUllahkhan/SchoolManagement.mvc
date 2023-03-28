@@ -48,6 +48,7 @@ namespace SchoolManagement.mvc.Controllers
         // GET: TeacherAllocationTables/Create
         public IActionResult Create()
         {
+            /// to view course name
             var course = _context.CourseOfferedTables.Include(q => q.Course).Select(q => new
             {
                 Coursename = q.Course.CourseName,
