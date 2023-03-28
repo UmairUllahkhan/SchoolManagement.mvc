@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model SchoolManagement.mvc.Models.AssignTeacherViewModel
+@{
+    ViewData["Title"] = "Assign Teacher";
+
+}
+
+<h2>Assign Teacher for @Model.CourseOfferedTable.Course.CourseName code @Model.CourseOfferedTable.Course.ShortName</h2>
+
+
+<h4>Teacher List</h4>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Teacher Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AssignTeacher)
+        {
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>
+                @if(item.IsAssign){
+                    <button data-TeacherId="@item.Id" data-shouldAssign="false" class="btn btn-danger AssignBtn" type="button">Remove
+                    </button>
+                }
+                else
+                {
+                <button data-TeacherId="@item.Id" data-shouldAssign="true" class="btn btn-danger AssignBtn" type="button">
+                    Add
+                </button>
+                }
+            </td>
+        }
+    </tbody>
+</table>
+
+<form asp-action="AssignTeacher" id="classassignform">
+    <input type="hidden" id="classid" name="CourseId" value="@Model.CourseOfferedTable.CoId" />
+    <input type="hidden" id="teacherid" name="TeacherId"/>
+    <input type="hidden" id="shouldassign" name="Shouldassign" />
+
+</form>
+
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+                $(function(){
+                    $('.AssignBtn').click(function(e){
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                                var btn = $(this);
+                                var teacherid = btn.attr("data-TeacherId");
+                                var shouldAssign = btn.attr("data-shouldAssign")
+                                $('#teacherid').val(teacherid);
+                                $('#shouldassign').val(shouldAssign)
+                                $('#classassignform').submit();
+                            }
+                        })
+
+                    })
+
+
+                })
+    </script>
+}
+
+

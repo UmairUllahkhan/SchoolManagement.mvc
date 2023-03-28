@@ -21,7 +21,9 @@ namespace SchoolManagement.mvc.DataDB
 
         public virtual CourseTable? Course { get; set; }
         public virtual ICollection<AttendenceTable> AttendenceTables { get; set; }
-        public virtual ICollection<StudentEnrollmentTable> StudentEnrollmentTables { get; set; }
+        public virtual ICollection<StudentEnrollmentTable> StudentEnrollmentTables { get; set; } /// <summary>
+        /// relation type is 'one to many'
+        /// </summary>
         public virtual ICollection<TeacherAllocationTable> TeacherAllocationTables { get; set; }
     }
 }
